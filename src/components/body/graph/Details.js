@@ -3,13 +3,13 @@ import ContributorChangesGraph from './ContributorChangesGraph'
 import TotalChangesGraph from './TotalChangesGraph'
 import { useParams } from 'react-router-dom'
 function Details() {
- const {userName,repoName} = useParams();
+ const {user,repo} = useParams();
  
   return (
     <>
     <ChangesDropdown/>
-    <TotalChangesGraph user={userName} repo={repoName}/>
-    <ContributorChangesGraph user={userName} repo={repoName}/>
+    <TotalChangesGraph user={user} repo={repo}/>
+    <ContributorChangesGraph user={user} repo={repo}/>
     
     </>
   )
