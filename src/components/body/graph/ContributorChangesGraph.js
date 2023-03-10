@@ -16,8 +16,8 @@ const ContributorChangesGraph = ({user,repo}) => {
         response = await git.get(
           `repos/${user}/${repo}/stats/contributors`
         );
-        if (Array.isArray(response)) {
-          setContributorChanges(response);
+        if (Array.isArray(response.data)) {
+          setContributorChanges(response.data);
         }
       } catch (error) {
         console.error(error);
