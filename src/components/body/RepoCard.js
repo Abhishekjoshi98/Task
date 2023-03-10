@@ -25,7 +25,7 @@ const RepoCard = () => {
     const result = await git.get(`search/repositories?q=created:>2017-10-22&sort=stars&order=desc&page=${page}`)
     dispatch(repoData([...data,...result.data.items]));
     setLoading(false)})();
-  }, [page])
+  }, [page,data,dispatch])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
