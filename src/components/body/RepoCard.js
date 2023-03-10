@@ -32,8 +32,7 @@ const RepoCard = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [])
 
-  const getRepo = 
-  }
+ 
 
 
   const handleScroll = async () => {
