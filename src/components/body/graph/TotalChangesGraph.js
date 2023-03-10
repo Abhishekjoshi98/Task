@@ -25,8 +25,8 @@ const TotalChangesGraph = ({user,repo}) => {
         }
 
         
-        if (Array.isArray(response)) {
-          setTotalchanges(response);
+        if (Array.isArray(response.data)) {
+          setTotalchanges(response.data);
         }
       } catch (error) {
         console.error(error);
