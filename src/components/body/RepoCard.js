@@ -21,7 +21,10 @@ const RepoCard = () => {
   const data = useSelector((store) => store.repoSlice);
 
   useEffect(() => {
-    getRepo()
+    (async _ => {
+    const result = await git.get(`search/repositories?q=created:>2017-10-22&sort=stars&order=desc&page=${page}`)
+    dispatch(repoData([...data,...result.data.items]));
+    setLoading(false)})();
   }, [page])
 
   useEffect(() => {
@@ -29,10 +32,7 @@ const RepoCard = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [])
 
-  const getRepo = async () => {
-    const result = await git.get(`search/repositories?q=created:>2017-10-22&sort=stars&order=desc&page=${page}`)
-    dispatch(repoData([...data,...result.data.items]));
-    setLoading(false);
+  const getRepo = 
   }
 
 
