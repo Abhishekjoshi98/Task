@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import moment from "moment";
 import { useSelector } from "react-redux";
+import {git} from '../../../utils'
 
 const ContributorChangesGraph = ({user,repo}) => {
   const graphType = useSelector((store) => store.changeGraph);
@@ -12,14 +13,11 @@ const ContributorChangesGraph = ({user,repo}) => {
     (async () => {
       try {
         let response;
-        response = await fetch(
-          `https://api.github.com/repos/${user}/${repo}/stats/contributors`
+        response = await git.get(
+          `repos/${user}/${repo}/stats/contributors`
         );
-
-        const json = await response.json();
-        console.log(json);
-        if (Array.isArray(json)) {
-          setContributorChanges(json);
+        if (Array.isArray(response)) {
+          setContributorChanges(response);
         }
       } catch (error) {
         console.error(error);
@@ -57,17 +55,6 @@ const ContributorChangesGraph = ({user,repo}) => {
     return labels;
   };
 
-  //   const setContributorData = () => {
-  //     if (Array.isArray(contributorChanges)) {
-  //       contributorChanges?.map((item) => {
-  //         return {
-  //           name: item.author.login,
-  //           type: "line",
-  //           data: setPlotData(item),
-  //         };
-  //       });
-  //     }
-  //   };
 
   const options = {
     chart: {
@@ -102,7 +89,7 @@ const ContributorChangesGraph = ({user,repo}) => {
       {contributorChanges.length > 0 ? (
         <HighchartsReact highcharts={Highcharts} options={options} />
       ) : (
-        <h1>No Contributors</h1>
+        <h1>Oops No Contributors Found !!!</h1>
       )}
     </div>
   );
