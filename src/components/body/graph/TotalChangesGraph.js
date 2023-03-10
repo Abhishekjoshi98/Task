@@ -99,7 +99,7 @@ const TotalChangesGraph = ({user,repo}) => {
       {totalChanges.length > 0 ? (
         <HighchartsReact highcharts={Highcharts} options={options} />
       ) : (
-        <h1>No Data</h1>
+        <h1>No Data Found !!!</h1>
       )}
     </div>
   );
