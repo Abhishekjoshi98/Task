@@ -4,7 +4,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import moment from "moment/moment";
 import { useSelector } from "react-redux";
-import axios from 'axios';
+import {git} from '../../../utils'
 
 const TotalChangesGraph = ({user,repo}) => {
   const graphType = useSelector((store) => store.changeGraph);
@@ -15,18 +15,18 @@ const TotalChangesGraph = ({user,repo}) => {
       try {
         let response;
         if (graphType !== "Commits") {
-          response = await axios.get(
+          response = await git.get(
             `repos/${user}/${repo}/stats/code_frequency`
           );
         } else {
-          response = await fetch(
+          response = await git.get(
             `repos/${user}/${repo}/stats/commit_activity`
           );
         }
 
-        const json = await response.json();
-        if (Array.isArray(json)) {
-          setTotalchanges(json);
+        
+        if (Array.isArray(response)) {
+          setTotalchanges(response);
         }
       } catch (error) {
         console.error(error);
