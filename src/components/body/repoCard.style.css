@@ -1,0 +1,11 @@
+
+.mainStack {
+    gap: '20px';
+    padding: '10px';
+  }
+.card { 
+    display: 'flex';
+  }
+
+
+
